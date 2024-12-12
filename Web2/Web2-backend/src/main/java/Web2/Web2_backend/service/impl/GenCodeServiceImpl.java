@@ -5,11 +5,13 @@ import java.io.IOException;
 import java.net.URLConnection;
 import java.sql.Timestamp;
 import java.util.List;
+import java.util.stream.Collectors;
 
 import org.springframework.stereotype.Service;
 
 import Web2.Web2_backend.dto.GenCodeDto;
 import Web2.Web2_backend.entity.GenCode;
+import Web2.Web2_backend.exception.ResourceNotFoundException;
 import Web2.Web2_backend.mapper.GenCodeMapper;
 import Web2.Web2_backend.repository.GenCodeRepository;
 import Web2.Web2_backend.repository.UserRepository;
@@ -54,26 +56,38 @@ public class GenCodeServiceImpl implements GenCodeService {
 
     @Override
     public GenCodeDto getGenCodebyId(Long projectId) {
-        // TODO Auto-generated method stub
-        throw new UnsupportedOperationException("Unimplemented method 'getGenCodebyId'");
+        GenCode genCode = genCodeRepository.findById(projectId)
+                .orElseThrow(() -> new ResourceNotFoundException("Project is not exists with given id: " + projectId));
+        return GenCodeMapper.mapToGenCodeDto(genCode);
     }
 
     @Override
     public List<GenCodeDto> getAllGenCode() {
-        // TODO Auto-generated method stub
-        throw new UnsupportedOperationException("Unimplemented method 'getAllGenCode'");
+        List<GenCode> genCodes = genCodeRepository.findAll();
+        return genCodes.stream().map((genCode) -> GenCodeMapper.mapToGenCodeDto(genCode))
+                .collect(Collectors.toList());
     }
 
     @Override
     public GenCodeDto updateGenCode(Long projectId, GenCodeDto updatedGenCode) {
-        // TODO Auto-generated method stub
-        throw new UnsupportedOperationException("Unimplemented method 'updateGenCode'");
+        GenCode genCode = genCodeRepository.findById(projectId)
+                .orElseThrow(() -> new ResourceNotFoundException("Project is not exists with given id: " + projectId));
+        //update data
+        genCode.setProjectName(updatedGenCode.getProjectName());
+
+        //update times and author
+        genCode.setUpdatedAt(new Timestamp(System.currentTimeMillis()));
+        genCode.setUpdatedBy("admin");
+
+        GenCode updatedGenCode2 = genCodeRepository.save(genCode);
+        return GenCodeMapper.mapToGenCodeDto(updatedGenCode2);
     }
 
     @Override
     public void deleteGenCode(Long projectId) {
-        // TODO Auto-generated method stub
-        throw new UnsupportedOperationException("Unimplemented method 'deleteGenCode'");
+        GenCode genCode = genCodeRepository.findById(projectId)
+                            .orElseThrow(() -> new ResourceNotFoundException("Project is not exists with given id: " + projectId));
+        genCodeRepository.deleteById(projectId);
     }
 
 }
