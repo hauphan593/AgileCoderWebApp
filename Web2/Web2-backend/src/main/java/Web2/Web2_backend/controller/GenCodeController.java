@@ -7,9 +7,7 @@ import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.CrossOrigin;
 import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
-import org.springframework.web.multipart.MultipartFile;
 
 import Web2.Web2_backend.dto.GenCodeDto;
 import Web2.Web2_backend.service.GenCodeService;
@@ -31,37 +29,14 @@ public class GenCodeController {
 
     //build Add project Rest API
     @PostMapping
-    public ResponseEntity<GenCodeDto> createProject(
-        @RequestParam("projectName") String projectName,
-        @RequestParam("projectRequire") String projectRequire,
-        @RequestParam(value = "fileData", required = false) MultipartFile file,
-        @RequestParam("userId") Long userId) {
+    public ResponseEntity<GenCodeDto> createProject(@RequestBody GenCodeDto genCodeDto) {
 
-            try {
-                // Chuyển file thành byte[]
-                byte[] fileData = null;
-                if (file != null) {
-                    if(!file.getContentType().equals("applicationzip")) {    
-                        if (!file.getContentType().equals("application/x-zip-compressed") ) {
-                            return ResponseEntity.badRequest().body(null);
-                        }
-                    }
-                    fileData = file.getBytes();
-                }
             // Tạo DTO
-                GenCodeDto genCodeDto = new GenCodeDto();
-                genCodeDto.setProjectName(projectName);
-                genCodeDto.setProjectRequire(projectRequire);
-                genCodeDto.setFileData(fileData);
-                genCodeDto.setUserid(userId);
-
                 GenCodeDto savedGenCode = genCodeService.createGenCode(genCodeDto);    
-                System.out.println("sau khi save Gencode " ); 
+                System.out.println(" Gencode complete" ); 
 
                 return new ResponseEntity<>(savedGenCode,HttpStatus.CREATED);
-            } catch (Exception e) {
-                return ResponseEntity.status(HttpStatus.INTERNAL_SERVER_ERROR).body(null);
-            }
+            
     }
 
     //build get GenCode REST API
@@ -90,6 +65,12 @@ public class GenCodeController {
     public ResponseEntity<String> deleteGenCode(@PathVariable("id") Long projectId) {
         genCodeService.deleteGenCode(projectId);
         return ResponseEntity.ok("Project deleted successfully!.");
+    }
+
+    @GetMapping("/download/{id}")
+    public ResponseEntity<String> downloadGenCode(@PathVariable("id") Long id) {
+        genCodeService.DownloadedGenCode(id);
+        return ResponseEntity.ok("Project downloaded successfully!");
     }
 
 }

@@ -11,6 +11,7 @@ public class GenCodeMapper {
     public static GenCodeDto mapToGenCodeDto(GenCode genCode) {
         return new GenCodeDto(
             genCode.getProjectId(),
+            genCode.getCompanyName(),
             genCode.getProjectName(),
             genCode.getProjectRequire(),
             genCode.getFileData(),
@@ -30,6 +31,7 @@ public class GenCodeMapper {
         }
         return new GenCode(
             genCodeDto.getProjectId(),
+            genCodeDto.getCompanyName(),
             genCodeDto.getProjectName(),
             genCodeDto.getProjectRequire(),
             genCodeDto.getFileData(),

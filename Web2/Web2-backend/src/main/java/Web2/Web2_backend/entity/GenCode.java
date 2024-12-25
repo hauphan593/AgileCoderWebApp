@@ -10,7 +10,6 @@ import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
 import jakarta.persistence.JoinColumn;
-import jakarta.persistence.Lob;
 import jakarta.persistence.ManyToOne;
 import jakarta.persistence.Table;
 import lombok.AllArgsConstructor;
@@ -30,16 +29,17 @@ public class GenCode {
     @GeneratedValue(strategy = GenerationType.IDENTITY )
     private Long projectId;
 
+    @Column(name = "company_name")
+    private String companyName;
+
     @Column(name = "project_name")
     private String projectName;
 
     @Column(name = "project_require")
     private String projectRequire;
 
-
-    @Lob
-    @Column(name = "file_data", columnDefinition = "LONGBLOB", nullable = true)
-    private byte[] fileData;
+    @Column(name = "file_data", nullable = true)
+    private String fileData;
 
     @ManyToOne(cascade = CascadeType.ALL, fetch = FetchType.LAZY)
     @JoinColumn(name = "userid")

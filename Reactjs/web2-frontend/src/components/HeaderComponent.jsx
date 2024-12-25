@@ -11,8 +11,8 @@ const HeaderComponent = () => {
 
   return (
     <div>
-        <header>
-            <nav className='navbar bg-dark border-bottom border-body' data-bs-theme="dark">
+        <header >
+            <nav className='navbar fixed-top bg-dark border-bottom border-body ' data-bs-theme="dark">
                 <a className="navbar-brand" onClick={listUsers} >A91l3 C0d3r</a>
             </nav>
         </header>

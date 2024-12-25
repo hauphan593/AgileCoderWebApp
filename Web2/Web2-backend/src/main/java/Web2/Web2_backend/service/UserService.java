@@ -9,9 +9,13 @@ public interface UserService {
 
     UserDto getUserbyId(Long Id);
 
+    UserDto getUserbyName(String username);
+
     List<UserDto> getAllUsers();
 
     UserDto updateUser(Long userId, UserDto updatedUser);
 
     void deleteUser(Long userId);
+
+    UserDto login(String userName, String password); 
 }

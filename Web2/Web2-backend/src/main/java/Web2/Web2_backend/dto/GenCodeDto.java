@@ -14,9 +14,10 @@ import lombok.Setter;
 public class GenCodeDto {
     
     private Long projectId;
+    private String companyName;
     private String projectName;
     private String projectRequire;
-    private byte[] fileData;
+    private String fileData;
     private Long userid;
     //Date info
     private Timestamp createdAt;

@@ -1,0 +1,85 @@
+.sidebar-main-container{
+    margin: 1rem 0 0 0;
+    padding: 0rem;   
+    height: 100%;
+}
+
+.sideBar-container{
+    margin: 0;
+    padding: 0;   
+    height: 84vh;
+    background-color: black;
+    
+}
+
+.main-menu{
+    text-align: left;
+    color: white;
+    background-color: black;
+
+}
+.main-menu:hover{
+    background-color: grey;
+    color: black;
+}
+
+.scrollable{
+    overflow: auto;
+    max-height: 40vh;
+    border:solid 1px wheat;
+    border-radius: 10px;
+
+    /* scrollbar-color: gray black;
+    scroll-behavior: smooth; */
+}
+.scrollable::-webkit-scrollbar{
+    width: 20px;
+    color: #000;
+}
+.scrollable::-webkit-scrollbar-track{
+    width: 20px;
+    /* border: solid 1px white; */
+    background: black;
+   
+}
+.scrollable::-webkit-scrollbar-thumb {
+    background: gray;
+    border-radius: 20px;
+    padding-top: 5px;
+    padding-bottom: 50px;
+}
+
+
+
+.sidebar-SubMenu{
+    color: white;
+    background-color: black;
+}
+.sidebar-SubMenu:hover{
+    background-color: grey;
+    color: black;
+}
+
+
+.sidebar-menu{
+    margin-top: 1rem;
+}
+
+ul.no-bullets {
+    list-style-type: none; /* Remove bullets */
+    padding: 0; /* Remove padding */
+    margin: 0; /* Remove margins */
+    background-color:black;
+}
+
+.sidebar-footer{
+    background-color: black;
+    color: white;
+    height: 8vh;
+}
+.sidebar-header{
+    background-color: black;
+    color: white;
+    height: 8vh;
+}
+

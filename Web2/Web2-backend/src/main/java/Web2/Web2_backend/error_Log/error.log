@@ -1,0 +1,20 @@
+Traceback (most recent call last):
+  File "C:\Users\haupq\Desktop\Project\AgileCoder-main\agilecoder\run.py", line 136, in <module>
+    chat_chain.execute_chain()
+  File "C:\Users\haupq\Desktop\Project\AgileCoder-main\agilecoder\components\chat_chain.py", line 163, in execute_chain
+    self.execute_step(phase_item)
+  File "C:\Users\haupq\Desktop\Project\AgileCoder-main\agilecoder\components\chat_chain.py", line 152, in execute_step
+    self.chat_env = compose_phase_instance.execute(self.chat_env)
+                    ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\haupq\Desktop\Project\AgileCoder-main\agilecoder\components\composed_phase.py", line 177, in execute
+    chat_env = compose_phase_instance.execute(chat_env)
+               ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\haupq\Desktop\Project\AgileCoder-main\agilecoder\components\composed_phase.py", line 151, in execute
+    chat_env = self.phases[phase].execute(chat_env,
+               ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\haupq\Desktop\Project\AgileCoder-main\agilecoder\components\phase.py", line 312, in execute
+    chat_env = self.update_chat_env(chat_env)
+               ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\haupq\Desktop\Project\AgileCoder-main\agilecoder\components\phase.py", line 618, in update_chat_env
+    raise ValueError("No Valid Codes.")
+ValueError: No Valid Codes.

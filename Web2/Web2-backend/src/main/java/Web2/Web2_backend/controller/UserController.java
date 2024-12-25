@@ -12,6 +12,7 @@ import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.PutMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 
 import Web2.Web2_backend.dto.UserDto;
@@ -60,4 +61,12 @@ public class UserController {
         userService.deleteUser(userId);
         return ResponseEntity.ok("User deleted successfully!.");
     }
+
+    @PostMapping("/login")
+    public ResponseEntity<UserDto> Login(@RequestBody UserDto userDto) {
+        
+        UserDto logged = userService.login(userDto.getUsername(), userDto.getPassword());
+        return ResponseEntity.ok(null);     
+    }                   
+        
 }

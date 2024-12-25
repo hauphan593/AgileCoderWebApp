@@ -79,8 +79,33 @@ public class UserServiceImpl implements UserService {
     public void deleteUser(Long userId) {
         User user = userRepository.findById(userId)
                     .orElseThrow(() -> new ResourceNotFoundException("User is not exists with given id: " + userId));
+        user.setAccountRole(null);
+        userRepository.save(user);
         userRepository.deleteById(userId);
     }
+
+    @Override
+    public UserDto getUserbyName(String username) {
+        // TODO Auto-generated method stub
+        throw new UnsupportedOperationException("Unimplemented method 'getUserbyName'");
+    }
+
+    @Override
+    public UserDto login(String userName, String password) {
+        List<User> users =  userRepository.findAll();
+        for (User user : users) {
+            if( user.getUsername().equals(userName)) {
+                if(user.getPassword().equals(password)) {
+                    User validUser = user;
+                    return UserMapper.mapToUserDto(validUser);
+                }
+            }
+        }
+        // throw new RuntimeException("Invalid username or password");
+        return null;
+    }
+
+
 
     
 

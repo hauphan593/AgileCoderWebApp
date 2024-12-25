@@ -1,9 +1,39 @@
 .footer {
-  position: sticky;
+  position: fixed;
   bottom: 0;
   width: 100%;
-  height: 50px;
+  height: 8vh;
   background-color: black;
   text-align: center;
   color: white;
+  z-index: 9999;
+}
+
+.app-layout {
+  display: flex;
+  min-height: 100vh;
+  flex-direction: row;
+}
+.sidebar-contain{
+  position: fixed; /* Fixed sidebar */
+  top: 0;
+  left: 0;
+  width: 250px; /* Sidebar width */
+  height: 100vh; /* Full height of the screen */
+  padding: 0px;
+  z-index: 1000; /* Ensure the sidebar stays on top of other content */
+  /* box-shadow: 2px 0 5px rgba(0, 0, 0, 0.1); Optional sidebar shadow */
+  background-color: #f4f4f4;
+}
+.main-contain {
+  margin-left: 250px; /* Offset content to avoid overlap with the sidebar */
+  padding: 10vh 0 0 0;
+  flex: 1;
+  overflow-y: auto; /* Allow scrolling if content exceeds height */
+  height: 100vh; /* Ensure the content stretches to full height */
+  box-sizing: border-box; /* Prevent padding from breaking layout */
+}
+
+.app-layout.no-sidebar .main-contain {
+  margin-left: 0; /* Khi sidebar ẩn, bỏ khoảng trống */
 }
